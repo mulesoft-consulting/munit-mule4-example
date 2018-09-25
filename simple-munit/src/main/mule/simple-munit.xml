@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f914c521-9ce5-4b2c-bb89-113f949e233c" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="simple-munitFlow" doc:id="0c110d2a-76f3-4c5c-89ae-96822d955772" >
+		<http:listener doc:name="Listener" doc:id="ec41b8e1-fce3-45ee-b22e-5ec402cc60ba" config-ref="HTTP_Listener_config" path="/munit"/>
+		<set-payload value="#['Done!']" doc:name="Set Payload" doc:id="71e20fc5-9dca-4afd-85f1-fa2077552876" />
+		<logger level="INFO" doc:name="Logger" doc:id="815ef621-c6b5-46e0-9b89-5dfba073d4be" message="#[payload]"/>
+	</flow>
+</mule>
